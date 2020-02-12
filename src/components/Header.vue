@@ -1,14 +1,31 @@
 <template>
   <div>
-    <b-nav>
-      <b-nav-item desabled>Active</b-nav-item>
-      <b-nav-item desabled>Link</b-nav-item>
-    </b-nav>
+    <h3>Counter quiz :</h3>
+    <b-progress class="mt-2" :max="max" show-value>
+      <b-progress-bar :value="correctAnswer" variant="success"></b-progress-bar>
+      <b-progress-bar :value="falseAnswer" variant="warning"></b-progress-bar>
+    </b-progress>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    correctAnswer: Number,
+    falseAnswer: Number
+  },
+  data() {
+    return {
+      // value: 10,
+      max: 10
+    };
+  }
+};
 </script>
 
-<style></style>
+<style scoped>
+h3 {
+  text-align: left;
+  margin-top: 20px;
+}
+</style>
