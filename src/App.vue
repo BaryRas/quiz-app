@@ -1,11 +1,16 @@
 <template>
   <div id="app">
     <img alt="Quiz-app logo" class="logo" src="./assets/logo.png" />
-    <Header></Header>
+    <Header :correctAnswer="correctAnswer" :falseAnswer="falseAnswer" />
     <b-container>
       <b-row>
         <b-col sm="6" offset="3">
-          <question-box :currentQuestion="questions[index]" :next="next" />
+          <question-box
+            :currentQuestion="questions[index]"
+            :next="next"
+            :increment="increment"
+            :buttonNextHidden="buttonNextHidden"
+          />
         </b-col>
       </b-row>
     </b-container>
@@ -25,12 +30,27 @@ export default {
   data() {
     return {
       questions: [],
-      index: 0
+      index: 0,
+      correctAnswer: 0,
+      falseAnswer: 0,
+      buttonNextHidden: false
     };
   },
   methods: {
     next() {
-      this.index++;
+      if (this.index < 9) {
+        this.index++;
+      } else {
+        this.buttonNextHidden = true;
+      }
+    },
+
+    increment(isCorrect) {
+      if (isCorrect) {
+        this.correctAnswer++;
+      } else {
+        this.falseAnswer++;
+      }
     }
   },
   mounted() {
