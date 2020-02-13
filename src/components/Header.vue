@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <b-container>
       <h3>
         <i class="fa fa-check-square"></i> : {{ correctAnswer }} |
@@ -14,6 +15,7 @@
         <b-progress-bar :value="falseAnswer" class="bg-false"></b-progress-bar>
       </b-progress>
     </b-container>
+
   </div>
 </template>
 
@@ -53,4 +55,5 @@ h3 {
 .bg-false {
   background-color: var(--color-primary-red);
 }
+
 </style>

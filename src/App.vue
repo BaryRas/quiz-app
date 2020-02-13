@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+
     <b-container>
       <b-navbar variant="faded">
         <b-navbar-brand>
@@ -11,16 +12,19 @@
       <Header :correctAnswer="correctAnswer" :falseAnswer="falseAnswer" />
 
       <b-row>
+<
         <b-col sm="6" offset="3" v-if="!inGame">
           <question-box
             :currentQuestion="questions[index]"
             :next="next"
             :increment="increment"
+
           />
         </b-col>
         <b-col v-else sm="8" offset="2">
           <b-table class="mt-5" stacked :items="resumeAnswer"></b-table>
           <b-button class="newGame" @click="newGame">New Game</b-button>
+
         </b-col>
       </b-row>
     </b-container>
@@ -59,6 +63,7 @@ export default {
         this.resumeAnswer.push(answers);
       } else {
         this.inGame = true;
+
       }
     },
 
@@ -68,6 +73,7 @@ export default {
       } else {
         this.falseAnswer++;
       }
+
     },
     newGame() {
       this.questions = [];
@@ -79,6 +85,7 @@ export default {
       axios
         .get("https://opentdb.com/api.php?amount=10&type=multiple")
         .then(res => (this.questions = res.data.results));
+
     }
   },
   mounted() {

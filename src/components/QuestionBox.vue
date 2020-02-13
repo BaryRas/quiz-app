@@ -18,12 +18,15 @@
       </b-list-group>
 
       <b-button
+
         class="submit"
+
         :disabled="selectedIndex === null || answered"
         @click="submitAnswer"
         >Submit</b-button
       >
       <b-button
+
         class="next"
         @click.prevent="
           next(suffleAnswers[selectedIndex], suffleAnswers[correctIndex])
@@ -59,6 +62,7 @@ export default {
     currentQuestion: Object,
     next: Function,
     increment: Function
+
   },
   data() {
     return {
@@ -138,7 +142,6 @@ export default {
 .spinner {
   margin-top: 250px;
 }
-
 .list-group {
   margin-bottom: 20px;
 }
@@ -159,6 +162,7 @@ export default {
 
 .incorrect {
   background-color: var(--color-primary-red);
+
 }
 
 .btn {
