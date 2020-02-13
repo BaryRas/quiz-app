@@ -18,18 +18,37 @@
       </b-list-group>
 
       <b-button
-        variant="primary"
+        class="submit"
         :disabled="selectedIndex === null || answered"
         @click="submitAnswer"
         >Submit</b-button
       >
       <b-button
-        variant="success"
-        @click.prevent="next"
-        v-show="!buttonNextHidden"
+        class="next"
+        @click.prevent="
+          next(suffleAnswers[selectedIndex], suffleAnswers[correctIndex])
+        "
+        v-show="answered"
         >Next</b-button
       >
     </b-jumbotron>
+    <div class="spinner" v-else>
+      <b-spinner
+        style="width: 3rem; height: 3rem;"
+        label="Large Spinner"
+        type="grow"
+      ></b-spinner>
+      <b-spinner
+        style="width: 3rem; height: 3rem;"
+        label="Large Spinner"
+        type="grow"
+      ></b-spinner>
+      <b-spinner
+        style="width: 3rem; height: 3rem;"
+        label="Large Spinner"
+        type="grow"
+      ></b-spinner>
+    </div>
   </div>
 </template>
 
@@ -39,8 +58,7 @@ export default {
   props: {
     currentQuestion: Object,
     next: Function,
-    increment: Function,
-    buttonNextHidden: Boolean
+    increment: Function
   },
   data() {
     return {
@@ -114,31 +132,51 @@ export default {
 
 <style scoped>
 .jumbotron {
-  margin-top: 20px;
+  margin-top: 50px;
 }
+
+.spinner {
+  margin-top: 250px;
+}
+
 .list-group {
   margin-bottom: 20px;
 }
 
 .list-group-item:hover {
-  background: #e9ecef;
+  background: var(--color-secondary-font);
   cursor: pointer;
 }
 
 .selected {
-  background-color: #5c5e70;
-  color: #e9ecef;
+  background-color: var(--color-primary-grey);
+  color: var(--color-secondary-font);
 }
 
 .correct {
-  background-color: #218838;
+  background-color: var(--color-primary-yellow);
 }
 
 .incorrect {
-  background-color: #ffc107;
+  background-color: var(--color-primary-red);
 }
 
 .btn {
   margin: 0 5px;
+}
+.submit,
+.next {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--color-primary-font);
+  border-radius: 0;
+  background-color: var(--color-primary-grey);
+  border-color: var(--color-primary-grey);
+}
+
+.submit:hover,
+.next:hover {
+  background-color: var(--color-secondary-grey);
+  border-color: var(--color-secondary-grey);
 }
 </style>
